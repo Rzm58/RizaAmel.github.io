@@ -84,6 +84,8 @@ a:hover{color:#5a6b3c;}
 input::placeholder,textarea::placeholder{color:#9a8f72;}
 [data-mode="m"]{display:none;}
 @media (max-width: 767px), (max-aspect-ratio: 9/10){[data-mode="d"]{display:none;}[data-mode="m"]{display:block;}}
+@keyframes musicSpin { to { transform: rotate(360deg); } }
+@keyframes navIn { from { opacity: 0; transform: translateY(10px) scale(.96); } to { opacity: 1; transform: none; } }
 </style>
 </helmet>
 <sc-if value="{{ loaded }}" hint-placeholder-val="{{ false }}">
@@ -437,7 +439,8 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
   </div>
 </sc-if>
 <sc-if value="{{ opened }}" hint-placeholder-val="{{ false }}">
-  <nav aria-label="Navigasi halaman" style="position:fixed;left:0;right:0;margin:0 auto;width:max-content;bottom:max(14px, env(safe-area-inset-bottom));z-index:50;display:flex;align-items:center;gap:4px;padding:5px;max-width:calc(100vw - 20px);box-sizing:border-box;border:1px solid rgba(217,184,102,0.55);border-radius:999px;background:rgba(18,30,16,0.62);backdrop-filter:blur(12px) saturate(1.2);-webkit-backdrop-filter:blur(12px) saturate(1.2);box-shadow:0 10px 30px rgba(10,20,5,0.35);animation:s4Cap .8s ease-out both;">
+  <sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
+  <nav aria-label="Navigasi halaman" style="position:fixed;left:0;right:0;margin:0 auto;width:max-content;bottom:calc(max(14px, env(safe-area-inset-bottom)) + 56px);z-index:50;display:flex;align-items:center;gap:4px;padding:5px;max-width:calc(100vw - 20px);box-sizing:border-box;border:1px solid rgba(217,184,102,0.55);border-radius:999px;background:rgba(18,30,16,0.62);backdrop-filter:blur(12px) saturate(1.2);-webkit-backdrop-filter:blur(12px) saturate(1.2);box-shadow:0 10px 30px rgba(10,20,5,0.35);animation:navIn .35s ease-out both;">
     <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="7">
       <button onClick="{{ n.go }}" aria-label="{{ n.label }}" title="{{ n.label }}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:36px;height:36px;padding:0 {{ n.pad }}px;border:none;border-radius:999px;background:{{ n.bg }};color:{{ n.fg }};font-family:'Cinzel', serif;font-size:12px;letter-spacing:0.1em;white-space:nowrap;cursor:pointer;transition:background .35s ease, color .35s ease, padding .35s ease;" style-hover="color:#f3d98a;">
         <span>{{ n.num }}</span>
@@ -445,6 +448,21 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
       </button>
     </sc-for>
   </nav>
+  </sc-if>
+  <button onClick="{{ toggleNav }}" aria-label="{{ navLabel }}" aria-expanded="{{ navOpenStr }}" title="{{ navLabel }}" style="position:fixed;left:0;right:0;margin:0 auto;bottom:max(14px, env(safe-area-inset-bottom));z-index:51;width:44px;height:44px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(217,184,102,0.7);border-radius:50%;background:rgba(18,30,16,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 22px rgba(10,20,5,0.35);cursor:pointer;animation:s4Cap .8s ease-out both;">
+    <span style="display:block;width:16px;height:1.5px;border-radius:2px;background:#f3d98a;transition:transform .3s ease;transform:{{ navBar1 }};"></span>
+    <span style="display:block;width:16px;height:1.5px;border-radius:2px;background:#f3d98a;transition:opacity .3s ease;opacity:{{ navBar2 }};"></span>
+    <span style="display:block;width:16px;height:1.5px;border-radius:2px;background:#f3d98a;transition:transform .3s ease;transform:{{ navBar3 }};"></span>
+  </button>
+  <button onClick="{{ toggleMusic }}" aria-label="{{ musicLabel }}" title="{{ musicLabel }}" style="position:fixed;right:max(14px, env(safe-area-inset-right));bottom:max(14px, env(safe-area-inset-bottom));z-index:51;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid rgba(217,184,102,0.7);border-radius:50%;background:rgba(18,30,16,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 22px rgba(10,20,5,0.35);cursor:pointer;animation:s4Cap .8s ease-out both;">
+    <span style="position:absolute;inset:4px;border-radius:50%;border:1px dashed rgba(243,217,138,0.75);animation:musicSpin 8s linear infinite;animation-play-state:{{ spinState }};opacity:{{ ringO }};transition:opacity .3s ease;"></span>
+    <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}">
+      <span style="display:flex;gap:4px;"><span style="width:3px;height:12px;border-radius:1px;background:#f3d98a;"></span><span style="width:3px;height:12px;border-radius:1px;background:#f3d98a;"></span></span>
+    </sc-if>
+    <sc-if value="{{ paused }}" hint-placeholder-val="{{ true }}">
+      <span style="width:0;height:0;margin-left:3px;border-style:solid;border-width:7px 0 7px 11px;border-color:transparent transparent transparent #f3d98a;"></span>
+    </sc-if>
+  </button>
 </sc-if>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;sheetUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/spreadsheets/d/1TM-xrPJwZJd_wqzxWfCNH5xolwcWTq5xPSnWZvnw_iw/edit?usp=sharing&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ucapan &amp; RSVP&quot;},&quot;qrisSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Wedding Gift&quot;}}">
@@ -522,11 +540,41 @@ class Component extends DCLogic {
   openInvite = () => {
     document.documentElement.style.overflow = '';
     this.setState({ opened: true });
+    this.playMusic();
     const s = document.querySelectorAll('main > section')[1];
     requestAnimationFrame(() => { if (s) window.scrollTo({ top: s.offsetTop, behavior: 'smooth' }); });
   };
+  getAudio() {
+    if (!this.audio) {
+      this.audio = new Audio('assets/lagu.mp3');
+      this.audio.loop = true;
+      this.audio.volume = 0.6;
+      this.audio.addEventListener('play', () => this.setState({ playing: true }));
+      this.audio.addEventListener('pause', () => this.setState({ playing: false }));
+    }
+    return this.audio;
+  }
+  playMusic = () => { const p = this.getAudio().play(); if (p && p.catch) p.catch(() => {}); };
+  toggleMusic = () => { const a = this.getAudio(); if (a.paused) this.playMusic(); else a.pause(); };
+  toggleNav = () => {
+    const open = !this.state.navOpen;
+    this.setState({ navOpen: open });
+    if (open) {
+      this.navOpenedAt = Date.now();
+      this.navY = window.scrollY;
+      if (!this.navScroll) {
+        this.navScroll = () => {
+          if (!this.state.navOpen || Date.now() - this.navOpenedAt < 250) return;
+          if (Math.abs(window.scrollY - this.navY) > 24) this.setState({ navOpen: false });
+        };
+        window.addEventListener('scroll', this.navScroll, { passive: true });
+      }
+    }
+  };
   componentWillUnmount() {
     clearInterval(this.tick);
+    if (this.audio) this.audio.pause();
+    if (this.navScroll) window.removeEventListener('scroll', this.navScroll);
     document.documentElement.style.overflow = '';
     window.removeEventListener('scroll', this.s5Check, { capture: true });
     window.removeEventListener('resize', this.s5Check);
@@ -553,8 +601,21 @@ class Component extends DCLogic {
       navItems: ['Beranda', 'Mempelai', "Ayat Qur'an", 'Bride & Groom', 'Undangan', 'Acara', 'Ucapan & Doa'].map((label, i) => {
         const on = (this.state.active || 0) === i;
         return { label, num: String(i + 1).padStart(2, '0'), on, pad: on ? 16 : 0, bg: on ? '#d9b866' : 'transparent', fg: on ? '#1b2410' : '#f3e7c4',
-          go: () => { const s = document.querySelectorAll('main > section')[i]; if (s) window.scrollTo({ top: s.offsetTop, behavior: 'smooth' }); } };
+          go: () => { this.setState({ navOpen: false }); const s = document.querySelectorAll('main > section')[i]; if (s) window.scrollTo({ top: s.offsetTop, behavior: 'smooth' }); } };
       }),
+      navOpen: !!this.state.navOpen,
+      navOpenStr: this.state.navOpen ? 'true' : 'false',
+      navLabel: this.state.navOpen ? 'Tutup navigasi' : 'Buka navigasi',
+      navBar1: this.state.navOpen ? 'translateY(5.5px) rotate(45deg)' : 'none',
+      navBar2: this.state.navOpen ? 0 : 1,
+      navBar3: this.state.navOpen ? 'translateY(-5.5px) rotate(-45deg)' : 'none',
+      toggleNav: this.toggleNav,
+      toggleMusic: this.toggleMusic,
+      playing: !!this.state.playing,
+      paused: !this.state.playing,
+      musicLabel: this.state.playing ? 'Hentikan musik' : 'Putar musik',
+      spinState: this.state.playing ? 'running' : 'paused',
+      ringO: this.state.playing ? 1 : 0.4,
       loaded: !!this.state.loaded,
       showLoader: !this.state.loaderGone,
       loaderO: this.state.loaderFade ? 0 : 1,
