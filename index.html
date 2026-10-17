@@ -468,7 +468,7 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
   </div>
 </sc-if>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;sheetUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/spreadsheets/d/1TM-xrPJwZJd_wqzxWfCNH5xolwcWTq5xPSnWZvnw_iw/edit?usp=sharing&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ucapan &amp; RSVP&quot;},&quot;qrisSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Wedding Gift&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;sheetUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;PASTE_URL_WEB_APP_APPS_SCRIPT_DI_SINI&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Ucapan &amp; RSVP&quot;},&quot;qrisSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Wedding Gift&quot;}}">
 class Component extends DCLogic {
   s5Check = () => {
     const h = window.innerHeight;
@@ -508,18 +508,41 @@ class Component extends DCLogic {
     if (!fName.trim() || !fMsg.trim()) { this.setState({ note: 'Mohon isi nama dan ucapan terlebih dahulu.' }); return; }
     const entry = { name: fName.trim(), attend: fAttend, guests: fAttend === 'Hadir' ? fGuests : '0', msg: fMsg.trim(), time: new Date().toISOString() };
     this.setState({ sending: true, note: '' });
-    const url = this.props.sheetUrl;
+    const url = this.sheetEndpoint();
+    let saved = false;
     if (url) {
-      try { const fd = new FormData(); Object.entries(entry).forEach(([k, v]) => fd.append(k, v)); await fetch(url, { method: 'POST', mode: 'no-cors', body: fd }); } catch (_) {}
+      try {
+        const fd = new FormData();
+        Object.entries(entry).forEach(([k, v]) => fd.append(k, v));
+        await fetch(url, { method: 'POST', mode: 'no-cors', body: fd });
+        saved = true;
+      } catch (_) {}
     }
     const wishes = [entry, ...this.state.wishes].slice(0, 50);
     try { localStorage.setItem('ra-ucapan', JSON.stringify(wishes)); } catch (_) {}
-    this.setState({ wishes, sending: false, fName: '', fMsg: '', fGuests: '1', note: 'Terima kasih atas ucapan & doanya!' });
+    this.setState({
+      wishes, sending: false, fName: '', fMsg: '', fGuests: '1',
+      note: saved ? 'Terima kasih atas ucapan & doanya!' : 'Ucapan tersimpan di perangkat ini, tetapi belum terkirim. Silakan coba lagi nanti.'
+    });
+  };
+  sheetEndpoint = () => {
+    const url = String(this.props.sheetUrl || '').trim();
+    return /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec/.test(url) ? url : '';
+  };
+  loadWishes = async () => {
+    const url = this.sheetEndpoint();
+    if (!url) return;
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data && data.ok && Array.isArray(data.wishes)) this.setState({ wishes: data.wishes.slice(0, 50) });
+    } catch (_) {}
   };
   componentDidMount() {
     this.tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
     document.documentElement.style.overflow = 'hidden';
     window.scrollTo(0, 0);
+    this.loadWishes();
     this.preload();
   }
   preload() {
