@@ -158,30 +158,6 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
         </div>
       </div>
     </div>
-    <div data-mode="d" style="position:absolute;inset:0;pointer-events:none;">
-      <div style="position:absolute;left:0;top:0;bottom:0;width:calc(50cqw - min(93cqh, 106cqw) * 0.42);display:flex;flex-direction:column;align-items:center;justify-content:space-around;padding:6cqh 0;box-sizing:border-box;">
-        <div data-a="fromL" style="width:min(9cqw, 18cqh);animation-delay:.3s;"><img src="assets/ik-kotak-cincin.webp" alt="" style="display:block;width:100%;transform-origin:50% 100%;animation:icoSway 4.2s ease-in-out infinite;"></div>
-        <div data-a="fromL" style="width:min(12cqw, 22cqh);animation-delay:.5s;"><img src="assets/ik-kucing.webp" alt="" style="display:block;width:100%;transform-origin:50% 100%;animation:icoSway 5s ease-in-out -1.2s infinite;"></div>
-        <div data-a="fromL" style="width:min(10cqw, 19cqh);animation-delay:.7s;"><img src="assets/ik-plang.webp" alt="" style="display:block;width:100%;transform-origin:50% 100%;animation:icoSway 4.6s ease-in-out -2.4s infinite;"></div>
-      </div>
-      <div style="position:absolute;right:0;top:0;bottom:0;width:calc(50cqw - min(93cqh, 106cqw) * 0.42);display:flex;flex-direction:column;align-items:center;justify-content:space-around;padding:6cqh 0;box-sizing:border-box;">
-        <div data-a="fromR" style="width:min(12cqw, 22cqh);animation-delay:.4s;"><img src="assets/ik-buket.webp" alt="" style="display:block;width:100%;transform-origin:30% 60%;animation:icoSway 4.8s ease-in-out -0.6s infinite;"></div>
-        <div data-a="fromR" style="width:min(12cqw, 22cqh);animation-delay:.6s;"><img src="assets/ik-bebek.webp" alt="" style="display:block;width:100%;transform-origin:50% 100%;animation:icoSway 4.4s ease-in-out -1.8s infinite;"></div>
-        <div data-a="fromR" style="width:min(12cqw, 22cqh);animation-delay:.8s;"><img src="assets/ik-sepatu.webp" alt="" style="display:block;width:100%;transform-origin:50% 100%;animation:icoSway 5.2s ease-in-out -3s infinite;"></div>
-      </div>
-    </div>
-    <div data-mode="m" style="position:absolute;inset:0;pointer-events:none;">
-      <div style="position:absolute;left:0;right:0;top:0;height:calc(50cqh - 53cqw);display:flex;align-items:center;justify-content:space-around;padding:0 4cqw;box-sizing:border-box;">
-        <div data-a="fromL" style="width:min(20cqw, 12cqh);animation-delay:.3s;"><img src="assets/ik-kotak-cincin.webp" alt="" style="display:block;width:100%;transform-origin:50% 100%;animation:icoSway 4.2s ease-in-out infinite;"></div>
-        <div data-a="title" style="width:min(22cqw, 13cqh);animation-delay:.45s;"><img src="assets/ik-plang.webp" alt="" style="display:block;width:100%;transform-origin:50% 100%;animation:icoSway 4.6s ease-in-out -2.4s infinite;"></div>
-        <div data-a="fromR" style="width:min(26cqw, 15cqh);animation-delay:.6s;"><img src="assets/ik-buket.webp" alt="" style="display:block;width:100%;transform-origin:30% 60%;animation:icoSway 4.8s ease-in-out -0.6s infinite;"></div>
-      </div>
-      <div style="position:absolute;left:0;right:0;bottom:0;height:calc(50cqh - 53cqw);display:flex;align-items:center;justify-content:space-around;padding:0 4cqw;box-sizing:border-box;">
-        <div data-a="fromL" style="width:min(26cqw, 15cqh);animation-delay:.5s;"><img src="assets/ik-kucing.webp" alt="" style="display:block;width:100%;transform-origin:50% 100%;animation:icoSway 5s ease-in-out -1.2s infinite;"></div>
-        <div data-a="cap" style="width:min(24cqw, 14cqh);animation-delay:.65s;"><img src="assets/ik-sepatu.webp" alt="" style="display:block;width:100%;transform-origin:50% 100%;animation:icoSway 5.2s ease-in-out -3s infinite;"></div>
-        <div data-a="fromR" style="width:min(26cqw, 15cqh);animation-delay:.8s;"><img src="assets/ik-bebek.webp" alt="" style="display:block;width:100%;transform-origin:50% 100%;animation:icoSway 4.4s ease-in-out -1.8s infinite;"></div>
-      </div>
-    </div>
   </section>
   <section data-screen-label="03 Ayat" ref="{{ s3Ref }}" style="scroll-snap-align:start;scroll-snap-stop:always;position:relative;width:100%;height:100svh;min-height:640px;overflow:hidden;background:#fefaee;color:#333d23;container-type:size;">
     <div style="position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);width:min(92cqw, 980px);height:min(90cqh, 820px);">
@@ -554,7 +530,7 @@ class Component extends DCLogic {
     this.preload();
   }
   preload() {
-    const names = ['s5-kartu','arch','bg-amel-frame','bg-bunga-atas','bg-bunga-bawah','bg-couple-frame','bg-riza-frame','bg-sudut-kanan-atas','bg-sudut-kiri-bawah','branch','cincin','couple','gapura-bunga','grass','hills','ik-bebek','ik-buket','ik-kado','ik-kotak-cincin','ik-kucing','ik-pesawat','ik-plang','ik-sepatu','joglo','label','leaves','logo-bsi','logo-jago','sky','tropical','welcome-sign'];
+    const names = ['s5-kartu','arch','bg-amel-frame','bg-bunga-atas','bg-bunga-bawah','bg-couple-frame','bg-riza-frame','bg-sudut-kanan-atas','bg-sudut-kiri-bawah','branch','cincin','couple','gapura-bunga','grass','hills','ik-kado','ik-pesawat','joglo','label','leaves','logo-bsi','logo-jago','sky','tropical','welcome-sign'];
     const srcs = names.map(n => 'assets/' + n + '.webp').concat(['lokasi-acara','lokasi-2','lokasi-3','lokasi-4','lokasi-desktop'].map(n => 'assets/' + n + '.jpg'));
     const total = srcs.length + 1;
     let done = 0;
