@@ -530,7 +530,7 @@ class Component extends DCLogic {
     this.preload();
   }
   preload() {
-    const names = ['s5-kartu','arch','bg-amel-frame','bg-bunga-atas','bg-bunga-bawah','bg-couple-frame','bg-riza-frame','bg-sudut-kanan-atas','bg-sudut-kiri-bawah','branch','cincin','couple','gapura-bunga','grass','hills','ik-kado','ik-pesawat','joglo','label','leaves','logo-bsi','logo-jago','sky','tropical','welcome-sign'];
+    const names = ['s5-kartu','arch','bg-amel-frame','bg-bunga-atas','bg-bunga-bawah','bg-couple-frame','bg-riza-frame','bg-sudut-kanan-atas','bg-sudut-kiri-bawah','branch','cincin','couple','gapura-bunga','grass','hills','ik-kado','ik-pesawat','joglo','label','leaves','logo-bsi','sky','tropical','welcome-sign'];
     const srcs = names.map(n => 'assets/' + n + '.webp').concat(['lokasi-acara','lokasi-2','lokasi-3','lokasi-4','lokasi-desktop'].map(n => 'assets/' + n + '.jpg'));
     const total = srcs.length + 1;
     let done = 0;
@@ -641,8 +641,7 @@ class Component extends DCLogic {
       giftClosed: !this.state.giftOpen,
       toggleGift: () => this.setState(s => ({ giftOpen: !s.giftOpen })),
       banks: [
-        { k: 'bsi', bank: 'BSI', logo: 'assets/logo-bsi.webp', no: '7306330149', name: 'Riza Maulana Halim' },
-        { k: 'jago', bank: 'Bank Jago', logo: 'assets/logo-jago.webp', no: '504394757342', name: 'Amelia Enggarwati' }
+        { k: 'bsi', bank: 'BSI', logo: 'assets/logo-bsi.webp', no: '7306330149', name: 'Riza Maulana Halim' }
       ].map(b => { const c = this.state.copied === b.k; return { ...b, copy: () => this.copyNo(b.no, b.k), label: c ? 'TERSALIN' : 'SALIN', btnBg: c ? '#a8803a' : 'transparent', btnFg: c ? '#fefaee' : '#a8803a' }; }),
       hasQris: !!this.props.qrisSrc,
       qrisSrc: this.props.qrisSrc || '',
