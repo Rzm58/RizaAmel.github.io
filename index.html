@@ -536,7 +536,6 @@ class Component extends DCLogic {
     document.documentElement.style.overflow = 'hidden';
     window.scrollTo(0, 0);
     this.loadWishes();
-    this.getAudio();
     this.preload();
   }
   preload() {
@@ -564,87 +563,15 @@ class Component extends DCLogic {
     const s = document.querySelectorAll('main > section')[1];
     requestAnimationFrame(() => { if (s) window.scrollTo({ top: s.offsetTop, behavior: 'smooth' }); });
   };
-  // Musik latar: pemutar YouTube (tersembunyi). Jika gagal dimuat/diputar,
-  // otomatis memakai assets/lagu.mp3. Antarmukanya meniru <audio>:
-  // play(), pause(), paused, volume (0..1).
   getAudio() {
-    if (this.audio) return this.audio;
-    const self = this;
-    const VID = '2uJut6USftQ';
-    const a = {
-      paused: true, ready: false, want: false, yt: null, mp3: null,
-      _vol: this.state.volume ?? 60,
-      play() {
-        a.want = true;
-        if (a.mp3) return a.mp3.play();
-        if (a.yt && a.ready) { try { a.yt.playVideo(); } catch (_) {} }
-        return Promise.resolve();
-      },
-      pause() {
-        a.want = false;
-        if (a.mp3) { a.mp3.pause(); return; }
-        if (a.yt && a.ready) { try { a.yt.pauseVideo(); } catch (_) {} }
-      },
-      get volume() { return a._vol / 100; },
-      set volume(v) {
-        a._vol = Math.round(v * 100);
-        if (a.mp3) a.mp3.volume = v;
-        else if (a.yt && a.ready) { try { a.yt.setVolume(a._vol); } catch (_) {} }
-      },
-      fallback() {
-        if (a.mp3) return;
-        const m = new Audio('assets/lagu.mp3');
-        m.loop = true;
-        m.volume = a._vol / 100;
-        m.addEventListener('play', () => { a.paused = false; self.setState({ playing: true }); });
-        m.addEventListener('pause', () => { a.paused = true; self.setState({ playing: false }); });
-        a.mp3 = m;
-        if (a.yt) { try { a.yt.destroy(); } catch (_) {} a.yt = null; }
-        if (a.host) { a.host.remove(); a.host = null; }
-        if (a.want) { const p = m.play(); if (p && p.catch) p.catch(() => {}); }
-      },
-    };
-    const mount = () => {
-      if (a.mp3 || a.yt) return;
-      const host = document.createElement('div');
-      host.setAttribute('aria-hidden', 'true');
-      host.style.cssText = 'position:fixed;right:0;bottom:0;width:200px;height:200px;opacity:0;pointer-events:none;z-index:-1;overflow:hidden;';
-      const slot = document.createElement('div');
-      host.appendChild(slot);
-      document.body.appendChild(host);
-      a.host = host;
-      const vars = { autoplay: 0, controls: 0, disablekb: 1, fs: 0, loop: 1, playlist: VID, playsinline: 1, rel: 0, modestbranding: 1 };
-      if (/^https?:$/.test(location.protocol)) vars.origin = location.origin;
-      a.yt = new window.YT.Player(slot, {
-        width: '200', height: '200', videoId: VID, playerVars: vars,
-        events: {
-          onReady: () => {
-            a.ready = true;
-            try { a.yt.setVolume(a._vol); } catch (_) {}
-            if (a.want) { try { a.yt.playVideo(); } catch (_) {} }
-          },
-          onStateChange: (e) => {
-            const S = window.YT.PlayerState;
-            if (e.data === S.PLAYING) { a.paused = false; self.setState({ playing: true }); }
-            else if (e.data === S.PAUSED || e.data === S.ENDED) { a.paused = true; self.setState({ playing: false }); }
-          },
-          onError: () => a.fallback(),
-        },
-      });
-    };
-    if (window.YT && window.YT.Player) mount();
-    else {
-      const prev = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => { if (prev) prev(); mount(); };
-      const s = document.createElement('script');
-      s.src = 'https://www.youtube.com/iframe_api';
-      s.async = true;
-      s.onerror = () => a.fallback();
-      document.head.appendChild(s);
+    if (!this.audio) {
+      this.audio = new Audio('assets/lagu.mp3');
+      this.audio.loop = true;
+      this.audio.volume = (this.state.volume ?? 60) / 100;
+      this.audio.addEventListener('play', () => this.setState({ playing: true }));
+      this.audio.addEventListener('pause', () => this.setState({ playing: false }));
     }
-    setTimeout(() => { if (!a.ready && !a.mp3) a.fallback(); }, 8000);
-    this.audio = a;
-    return a;
+    return this.audio;
   }
   playMusic = () => { const p = this.getAudio().play(); if (p && p.catch) p.catch(() => {}); };
   setVolume = (e) => { const v = +e.target.value; this.setState({ volume: v }); this.getAudio().volume = v / 100; };
