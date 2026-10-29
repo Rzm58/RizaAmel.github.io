@@ -57,15 +57,15 @@ a:hover{color:#5a6b3c;}
 @keyframes s4Cap{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes flowerHang{0%,100%{transform:rotate(0deg)}50%{transform:rotate(1.8deg)}}
 @keyframes flowerRise{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-2deg)}}
-:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"]) [data-a="hang"]{animation:s4Hang 1.4s cubic-bezier(.2,.8,.2,1) both;}
-:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"]) [data-a="grow"]{animation:s4Grow 1.4s cubic-bezier(.2,.8,.2,1) both;}
-:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"]) [data-a="tr"]{animation:s4TR 1s cubic-bezier(.2,.8,.2,1) both;}
-:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"]) [data-a="bl"]{animation:s4BL 1s cubic-bezier(.2,.8,.2,1) both;}
-:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"]) [data-a="title"]{animation:s4Title 1.1s ease-out both;}
-:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"]) [data-a="fromL"]{animation:s4FromL 1.1s cubic-bezier(.2,.8,.2,1) both;}
-:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"]) [data-a="fromR"]{animation:s4FromR 1.1s cubic-bezier(.2,.8,.2,1) both;}
-:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"]) [data-a="ring"]{animation:s4Ring 1s cubic-bezier(.3,1.3,.5,1) both;}
-:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"]) [data-a="cap"]{animation:s4Cap .9s ease-out both;}
+:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"],[data-s8="in"]) [data-a="hang"]{animation:s4Hang 1.4s cubic-bezier(.2,.8,.2,1) both;}
+:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"],[data-s8="in"]) [data-a="grow"]{animation:s4Grow 1.4s cubic-bezier(.2,.8,.2,1) both;}
+:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"],[data-s8="in"]) [data-a="tr"]{animation:s4TR 1s cubic-bezier(.2,.8,.2,1) both;}
+:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"],[data-s8="in"]) [data-a="bl"]{animation:s4BL 1s cubic-bezier(.2,.8,.2,1) both;}
+:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"],[data-s8="in"]) [data-a="title"]{animation:s4Title 1.1s ease-out both;}
+:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"],[data-s8="in"]) [data-a="fromL"]{animation:s4FromL 1.1s cubic-bezier(.2,.8,.2,1) both;}
+:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"],[data-s8="in"]) [data-a="fromR"]{animation:s4FromR 1.1s cubic-bezier(.2,.8,.2,1) both;}
+:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"],[data-s8="in"]) [data-a="ring"]{animation:s4Ring 1s cubic-bezier(.3,1.3,.5,1) both;}
+:is([data-s2="in"],[data-s3="in"],[data-s4="in"],[data-s6="in"],[data-s7="in"],[data-s8="in"]) [data-a="cap"]{animation:s4Cap .9s ease-out both;}
 @media (prefers-reduced-motion: reduce){*{animation:none !important;}[data-a]{opacity:1 !important;}}
 @keyframes cineText{0%{opacity:0;transform:scale(.96);filter:blur(6px)}28%{opacity:1;transform:none;filter:blur(0)}72%{opacity:1;transform:scale(1.02);filter:blur(0)}100%{opacity:0;transform:scale(1.04);filter:blur(4px)}}
 @keyframes cineBg{from{opacity:1;visibility:visible}to{opacity:0;visibility:hidden}}
@@ -320,6 +320,19 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
     </div>
   </section>
 
+  <section data-screen-label="06b Penutup" ref="{{ s8Ref }}" style="scroll-snap-align:start;scroll-snap-stop:always;position:relative;width:100%;height:100svh;min-height:560px;overflow:hidden;background:#fefaee;color:#333d23;container-type:size;">
+    <img data-a="tr" src="assets/bg-sudut-kanan-atas.webp" alt="" style="position:absolute;right:1.5cqw;top:0;width:min(22cqw, 40cqh);pointer-events:none;">
+    <img data-a="bl" src="assets/bg-sudut-kiri-bawah.webp" alt="" style="position:absolute;left:1.5cqw;bottom:0;width:min(22cqw, 40cqh);pointer-events:none;animation-delay:.1s;">
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6cqh;padding:3cqh 5cqw;box-sizing:border-box;text-align:center;">
+      <span data-a="title" style="font-family:'Cinzel', serif;font-size:clamp(11px, min(1.2cqw, 1.9cqh), 15px);letter-spacing:0.4em;text-indent:0.4em;color:#a8803a;animation-delay:.2s;">SAMPAI JUMPA</span>
+      <div data-a="grow" style="width:min(40cqh, 76cqw);animation-delay:.45s;filter:drop-shadow(0 1.2cqh 2.4cqh rgba(60,45,15,0.22));">
+        <img src="assets/bg-couple-frame.webp" alt="Riza dan Amel" style="display:block;width:100%;aspect-ratio:859/1224;">
+      </div>
+      <h3 data-a="title" style="margin:0;font-family:'Pinyon Script', cursive;font-weight:400;font-size:clamp(34px, min(5cqw, 7.5cqh), 72px);line-height:1;color:#a8803a;animation-delay:.9s;">Riza &amp; Amel</h3>
+      <p data-a="cap" style="margin:0;font-family:'Cormorant Garamond', serif;font-style:italic;font-size:clamp(15px, min(1.6cqw, 2.6cqh), 24px);color:#6b5a3a;animation-delay:1.3s;">Kami menantikan kehadiran Anda</p>
+    </div>
+  </section>
+
   <section data-screen-label="07 Gift &amp; Ucapan" ref="{{ s7Ref }}" style="scroll-snap-align:start;position:relative;width:100%;min-height:100svh;overflow:clip;background:#8dbb3f;color:#3b2f18;container-type:inline-size;">
     <div style="position:absolute;inset:0;pointer-events:none;">
       <div style="position:sticky;top:0;height:100svh;overflow:hidden;">
@@ -434,7 +447,7 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
 <sc-if value="{{ opened }}" hint-placeholder-val="{{ false }}">
   <sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
   <nav aria-label="Navigasi halaman" style="position:fixed;left:0;right:0;margin:0 auto;width:max-content;bottom:calc(max(14px, env(safe-area-inset-bottom)) + clamp(46px, 12vw, 56px));z-index:50;display:flex;align-items:center;gap:4px;padding:5px;max-width:calc(100vw - 20px);box-sizing:border-box;border:1px solid rgba(217,184,102,0.55);border-radius:999px;background:rgba(18,30,16,0.62);backdrop-filter:blur(12px) saturate(1.2);-webkit-backdrop-filter:blur(12px) saturate(1.2);box-shadow:0 10px 30px rgba(10,20,5,0.35);animation:navIn .35s ease-out both;">
-    <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="7">
+    <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="8">
       <button onClick="{{ n.go }}" aria-label="{{ n.label }}" title="{{ n.label }}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:clamp(30px, 8.4vw, 36px);height:clamp(30px, 8.4vw, 36px);padding:0 {{ n.pad }}px;border:none;border-radius:999px;background:{{ n.bg }};color:{{ n.fg }};font-family:'Cinzel', serif;font-size:clamp(10px, 2.8vw, 12px);letter-spacing:0.1em;white-space:nowrap;cursor:pointer;transition:background .35s ease, color .35s ease, padding .35s ease;" style-hover="color:#f3d98a;">
         <span>{{ n.num }}</span>
         <sc-if value="{{ n.on }}" hint-placeholder-val="{{ false }}"><span style="animation:s4Cap .4s ease-out both;">{{ n.label }}</span></sc-if>
@@ -469,7 +482,7 @@ class Component extends DCLogic {
     let act = 0;
     secs.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top <= h * 0.5 && r.bottom > h * 0.5) act = i; });
     if (act !== this.state.active) this.setState({ active: act });
-    for (const [k, s] of [['s2', this.s2El], ['s3', this.s3El], ['s4', this.s4El], ['s5', this.s5El], ['s6', this.s6El], ['s7', this.s7El]]) {
+    for (const [k, s] of [['s2', this.s2El], ['s3', this.s3El], ['s4', this.s4El], ['s5', this.s5El], ['s6', this.s6El], ['s7', this.s7El], ['s8', this.s8El]]) {
       if (!s) continue;
       const r = s.getBoundingClientRect();
       if (r.top < h * 0.6 && r.bottom > h * 0.4) s.setAttribute('data-' + k, 'in');
@@ -490,6 +503,7 @@ class Component extends DCLogic {
   }
   s6Ref = (s) => { if (s && this.s6El !== s) { this.s6El = s; this.bindScroll(); } };
   s7Ref = (s) => { if (s && this.s7El !== s) { this.s7El = s; this.bindScroll(); } };
+  s8Ref = (s) => { if (s && this.s8El !== s) { this.s8El = s; this.bindScroll(); } };
   state = { now: Date.now(), giftOpen: false, copied: null, fName: '', fAttend: 'Hadir', fGuests: '1', fMsg: '', sending: false, note: '', wishes: (() => { try { return JSON.parse(localStorage.getItem('ra-ucapan') || '[]'); } catch (_) { return []; } })() };
   copyNo = (no, k) => {
     const done = () => { this.setState({ copied: k }); clearTimeout(this.cpT); this.cpT = setTimeout(() => this.setState({ copied: null }), 1800); };
@@ -539,7 +553,7 @@ class Component extends DCLogic {
     this.preload();
   }
   preload() {
-    const names = ['amplop','arch','bg-amel-frame','bg-bunga-atas','bg-bunga-bawah','bg-riza-frame','bg-sudut-kanan-atas','bg-sudut-kiri-bawah','branch','cincin','couple','gapura-bunga','grass','hills','ik-bebek','ik-buket','ik-kado','ik-kotak-cincin','ik-kucing','ik-pesawat','ik-plang','ik-sepatu','joglo','kelinci-oranye-2','kelinci-putih','label','leaves','logo-bsi','logo-jago','padang-rumput','rumput-bunga','semak','sky','tropical','welcome-sign'];
+    const names = ['amplop','arch','bg-amel-frame','bg-bunga-atas','bg-bunga-bawah','bg-couple-frame','bg-riza-frame','bg-sudut-kanan-atas','bg-sudut-kiri-bawah','branch','cincin','couple','gapura-bunga','grass','hills','ik-bebek','ik-buket','ik-kado','ik-kotak-cincin','ik-kucing','ik-pesawat','ik-plang','ik-sepatu','joglo','kelinci-oranye-2','kelinci-putih','label','leaves','logo-bsi','logo-jago','padang-rumput','rumput-bunga','semak','sky','tropical','welcome-sign'];
     const srcs = names.map(n => 'assets/' + n + '.webp').concat(['lokasi-acara','lokasi-2','lokasi-3','lokasi-4','lokasi-desktop'].map(n => 'assets/' + n + '.jpg'));
     const total = srcs.length + 1;
     let done = 0;
@@ -618,7 +632,7 @@ class Component extends DCLogic {
       s3Ref: this.s3Ref,
       s4Ref: this.s4Ref,
       opened: !!this.state.opened,
-      navItems: ['Beranda', 'Mempelai', "Ayat Qur'an", 'Bride & Groom', 'Undangan', 'Acara', 'Ucapan & Doa'].map((label, i) => {
+      navItems: ['Beranda', 'Mempelai', "Ayat Qur'an", 'Bride & Groom', 'Undangan', 'Acara', 'Penutup', 'Ucapan & Doa'].map((label, i) => {
         const on = (this.state.active || 0) === i;
         return { label, num: String(i + 1).padStart(2, '0'), on, pad: on ? 16 : 0, bg: on ? '#d9b866' : 'transparent', fg: on ? '#1b2410' : '#f3e7c4',
           go: () => { this.setState({ navOpen: false }); const s = document.querySelectorAll('main > section')[i]; if (s) window.scrollTo({ top: s.offsetTop, behavior: 'smooth' }); } };
@@ -645,6 +659,7 @@ class Component extends DCLogic {
       notOpened: !this.state.opened,
       openInvite: this.openInvite,
       s7Ref: this.s7Ref,
+      s8Ref: this.s8Ref,
       giftOpen: this.state.giftOpen,
       giftClosed: !this.state.giftOpen,
       toggleGift: () => this.setState(s => ({ giftOpen: !s.giftOpen })),
