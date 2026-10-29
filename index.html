@@ -320,19 +320,6 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
     </div>
   </section>
 
-  <section data-screen-label="06b Penutup" ref="{{ s8Ref }}" style="scroll-snap-align:start;scroll-snap-stop:always;position:relative;width:100%;height:100svh;min-height:560px;overflow:hidden;background:#fefaee;color:#333d23;container-type:size;">
-    <img data-a="tr" src="assets/bg-sudut-kanan-atas.webp" alt="" style="position:absolute;right:1.5cqw;top:0;width:min(22cqw, 40cqh);pointer-events:none;">
-    <img data-a="bl" src="assets/bg-sudut-kiri-bawah.webp" alt="" style="position:absolute;left:1.5cqw;bottom:0;width:min(22cqw, 40cqh);pointer-events:none;animation-delay:.1s;">
-    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6cqh;padding:3cqh 5cqw;box-sizing:border-box;text-align:center;">
-      <span data-a="title" style="font-family:'Cinzel', serif;font-size:clamp(11px, min(1.2cqw, 1.9cqh), 15px);letter-spacing:0.4em;text-indent:0.4em;color:#a8803a;animation-delay:.2s;">SAMPAI JUMPA</span>
-      <div data-a="grow" style="width:min(40cqh, 76cqw);animation-delay:.45s;filter:drop-shadow(0 1.2cqh 2.4cqh rgba(60,45,15,0.22));">
-        <img src="assets/bg-couple-frame.webp" alt="Riza dan Amel" style="display:block;width:100%;aspect-ratio:859/1224;">
-      </div>
-      <h3 data-a="title" style="margin:0;font-family:'Pinyon Script', cursive;font-weight:400;font-size:clamp(34px, min(5cqw, 7.5cqh), 72px);line-height:1;color:#a8803a;animation-delay:.9s;">Riza &amp; Amel</h3>
-      <p data-a="cap" style="margin:0;font-family:'Cormorant Garamond', serif;font-style:italic;font-size:clamp(15px, min(1.6cqw, 2.6cqh), 24px);color:#6b5a3a;animation-delay:1.3s;">Kami menantikan kehadiran Anda</p>
-    </div>
-  </section>
-
   <section data-screen-label="07 Gift &amp; Ucapan" ref="{{ s7Ref }}" style="scroll-snap-align:start;position:relative;width:100%;min-height:100svh;overflow:clip;background:#8dbb3f;color:#3b2f18;container-type:inline-size;">
     <div style="position:absolute;inset:0;pointer-events:none;">
       <div style="position:sticky;top:0;height:100svh;overflow:hidden;">
@@ -432,6 +419,17 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
     </div>
   </section>
 
+  <section data-screen-label="08 Penutup" ref="{{ s8Ref }}" style="scroll-snap-align:start;scroll-snap-stop:always;position:relative;width:100%;height:100svh;min-height:560px;overflow:hidden;background:#fefaee;color:#333d23;container-type:size;">
+    <img data-a="tr" src="assets/bg-sudut-kanan-atas.webp" alt="" style="position:absolute;right:1.5cqw;top:0;width:min(22cqw, 40cqh);pointer-events:none;">
+    <img data-a="bl" src="assets/bg-sudut-kiri-bawah.webp" alt="" style="position:absolute;left:1.5cqw;bottom:0;width:min(22cqw, 40cqh);pointer-events:none;animation-delay:.1s;">
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6cqh;padding:3cqh 5cqw;box-sizing:border-box;text-align:center;">
+      <span data-a="title" style="font-family:'Cinzel', serif;font-size:clamp(11px, min(1.2cqw, 1.9cqh), 15px);letter-spacing:0.4em;text-indent:0.4em;color:#a8803a;animation-delay:.2s;">SEE YOU ON OUR WEDDING DAY</span>
+      <div data-a="grow" style="width:min(40cqh, 76cqw);animation-delay:.45s;filter:drop-shadow(0 1.2cqh 2.4cqh rgba(60,45,15,0.22));">
+        <img src="assets/bg-couple-frame.webp" alt="Riza dan Amel" style="display:block;width:100%;aspect-ratio:859/1224;">
+      </div>
+      <h3 data-a="title" style="margin:0;font-family:'Pinyon Script', cursive;font-weight:400;font-size:clamp(34px, min(5cqw, 7.5cqh), 72px);line-height:1;color:#a8803a;animation-delay:.9s;">Riza &amp; Amel</h3>
+    </div>
+  </section>
 </main>
 </sc-if>
 <sc-if value="{{ showLoader }}" hint-placeholder-val="{{ true }}">
@@ -632,7 +630,7 @@ class Component extends DCLogic {
       s3Ref: this.s3Ref,
       s4Ref: this.s4Ref,
       opened: !!this.state.opened,
-      navItems: ['Beranda', 'Mempelai', "Ayat Qur'an", 'Bride & Groom', 'Undangan', 'Acara', 'Penutup', 'Ucapan & Doa'].map((label, i) => {
+      navItems: ['Beranda', 'Mempelai', "Ayat Qur'an", 'Bride & Groom', 'Undangan', 'Acara', 'Ucapan & Doa', 'Penutup'].map((label, i) => {
         const on = (this.state.active || 0) === i;
         return { label, num: String(i + 1).padStart(2, '0'), on, pad: on ? 16 : 0, bg: on ? '#d9b866' : 'transparent', fg: on ? '#1b2410' : '#f3e7c4',
           go: () => { this.setState({ navOpen: false }); const s = document.querySelectorAll('main > section')[i]; if (s) window.scrollTo({ top: s.offsetTop, behavior: 'smooth' }); } };
