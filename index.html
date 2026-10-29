@@ -50,10 +50,13 @@ a:hover{color:#5a6b3c;}
 @keyframes s5Sheen{0%{transform:translateX(-140%) skewX(-18deg);opacity:0}12%{opacity:1}55%,100%{transform:translateX(340%) skewX(-18deg);opacity:0}}
 [data-s5="in"] [data-a="card"]{animation:s5Card 1.2s cubic-bezier(.2,.8,.2,1) both;}
 [data-s5="in"] [data-a="line"]{animation:lineGrow .9s ease-out both;}
-.s5-float{animation:s5Float 6s ease-in-out 2.2s infinite;}
+@keyframes s5Flip{0%,30%{transform:rotateY(180deg) scale(1)}62%{transform:rotateY(90deg) scale(1.06)}100%{transform:rotateY(0) scale(1)}}
+[data-s5="in"] .s5-flip{animation:s5Flip 2.1s ease-in-out .5s both;}
+.s5-face{-webkit-backface-visibility:hidden;backface-visibility:hidden;}
+.s5-float{animation:s5Float 6s ease-in-out 3.4s infinite;}
 .s5-sheen{position:absolute;inset:0;overflow:hidden;pointer-events:none;-webkit-mask:url('assets/s5-kartu.webp') center/100% 100% no-repeat;mask:url('assets/s5-kartu.webp') center/100% 100% no-repeat;}
 .s5-sheen::after{content:'';position:absolute;top:0;bottom:0;left:0;width:34%;background:linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,246,214,.75) 50%, rgba(255,255,255,0) 100%);opacity:0;}
-[data-s5="in"] .s5-sheen::after{animation:s5Sheen 2.6s ease-in-out 1.9s 1 both;}
+[data-s5="in"] .s5-sheen::after{animation:s5Sheen 2.6s ease-in-out 3s 1 both;}
 @keyframes icoSway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 @keyframes s4Hang{from{opacity:0;transform:translateY(-30%)}to{opacity:1;transform:none}}
 @keyframes s4Grow{from{opacity:0;transform:translateY(30%)}to{opacity:1;transform:none}}
@@ -247,14 +250,22 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
     <img data-a="tr" src="assets/bg-sudut-kanan-atas.webp" alt="" style="position:absolute;right:1.5cqw;top:0;width:clamp(110px, min(20cqw, 36cqh), 340px);pointer-events:none;">
     <img data-a="bl" src="assets/bg-sudut-kiri-bawah.webp" alt="" style="position:absolute;left:1.5cqw;bottom:0;width:clamp(110px, min(20cqw, 36cqh), 340px);pointer-events:none;animation-delay:.1s;">
     <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-      <div data-a="card" style="--w:min(86cqw, 57cqh, 470px);width:var(--w);animation-delay:.25s;">
-        <div class="s5-float" style="position:relative;width:100%;filter:drop-shadow(0 calc(var(--w) * .015) calc(var(--w) * .03) rgba(90, 70, 40, .3));">
-          <img src="assets/s5-kartu.webp" alt="" style="display:block;width:100%;aspect-ratio:560/802;">
-          <div class="s5-sheen" aria-hidden="true"></div>
-          <div style="position:absolute;left:15%;right:15%;top:27%;display:flex;flex-direction:column;align-items:center;text-align:center;">
-            <p data-a="cap" style="margin:0;font-family:'Cormorant Garamond', serif;font-style:italic;font-size:calc(var(--w) * .062);line-height:1.5;color:#6b5a3a;text-wrap:balance;animation-delay:.9s;">Dengan bahagia dan penuh rasa hormat, kami mengundang Bapak/Ibu serta kawan-kawan untuk menghadiri acara pernikahan kami</p>
-            <div data-a="line" aria-hidden="true" style="display:flex;align-items:center;gap:calc(var(--w) * .025);width:62%;margin-top:calc(var(--w) * .1);animation-delay:1.4s;"><span style="flex:1;height:1px;background:linear-gradient(to right, transparent, #c9a14a);"></span><span style="width:calc(var(--w) * .018);height:calc(var(--w) * .018);transform:rotate(45deg);border:1px solid #c9a14a;"></span><span style="flex:1;height:1px;background:linear-gradient(to left, transparent, #c9a14a);"></span></div>
-            <h2 data-a="title" style="margin:calc(var(--w) * .07) 0 0;font-family:'Pinyon Script', cursive;font-weight:400;font-size:calc(var(--w) * .135);line-height:1.1;white-space:nowrap;color:#a8803a;animation-delay:1.7s;">Riza &amp; Amel</h2>
+      <div class="s5-float" style="--w:min(86cqw, 57cqh, 470px);width:var(--w);">
+        <div data-a="card" style="width:100%;perspective:1500px;animation-delay:.25s;">
+          <div class="s5-flip" style="position:relative;width:100%;transform-style:preserve-3d;">
+            <div class="s5-face" style="position:relative;width:100%;filter:drop-shadow(0 calc(var(--w) * .015) calc(var(--w) * .03) rgba(90, 70, 40, .3));">
+              <img src="assets/s5-kartu.webp" alt="" style="display:block;width:100%;aspect-ratio:560/802;">
+              <div class="s5-sheen" aria-hidden="true"></div>
+              <div style="position:absolute;left:15%;right:15%;top:27%;display:flex;flex-direction:column;align-items:center;text-align:center;">
+                <p data-a="cap" style="margin:0;font-family:'Cormorant Garamond', serif;font-style:italic;font-size:calc(var(--w) * .062);line-height:1.5;color:#6b5a3a;text-wrap:balance;animation-delay:2s;">Dengan bahagia dan penuh rasa hormat, kami mengundang Bapak/Ibu serta kawan-kawan untuk menghadiri acara pernikahan kami</p>
+                <div data-a="line" aria-hidden="true" style="display:flex;align-items:center;gap:calc(var(--w) * .025);width:62%;margin-top:calc(var(--w) * .1);animation-delay:2.5s;"><span style="flex:1;height:1px;background:linear-gradient(to right, transparent, #c9a14a);"></span><span style="width:calc(var(--w) * .018);height:calc(var(--w) * .018);transform:rotate(45deg);border:1px solid #c9a14a;"></span><span style="flex:1;height:1px;background:linear-gradient(to left, transparent, #c9a14a);"></span></div>
+                <h2 data-a="title" style="margin:calc(var(--w) * .07) 0 0;font-family:'Pinyon Script', cursive;font-weight:400;font-size:calc(var(--w) * .135);line-height:1.1;white-space:nowrap;color:#a8803a;animation-delay:2.8s;">Riza &amp; Amel</h2>
+              </div>
+            </div>
+            <div class="s5-face" aria-hidden="true" style="position:absolute;inset:0;transform:rotateY(180deg);filter:drop-shadow(0 calc(var(--w) * .015) calc(var(--w) * .03) rgba(90, 70, 40, .3));">
+              <img src="assets/s5-kartu.webp" alt="" style="display:block;width:100%;height:100%;">
+              <div style="position:absolute;left:0;right:0;top:50%;display:flex;align-items:center;justify-content:center;gap:calc(var(--w) * .025);"><span style="width:22%;height:1px;background:linear-gradient(to right, transparent, #c9a14a);"></span><span style="width:calc(var(--w) * .03);height:calc(var(--w) * .03);transform:rotate(45deg);border:1px solid #c9a14a;"></span><span style="width:22%;height:1px;background:linear-gradient(to left, transparent, #c9a14a);"></span></div>
+            </div>
           </div>
         </div>
       </div>
