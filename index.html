@@ -84,8 +84,8 @@ a:hover{color:#5a6b3c;}
 @keyframes cineText{0%{opacity:0;transform:scale(.96);filter:blur(6px)}28%{opacity:1;transform:none;filter:blur(0)}72%{opacity:1;transform:scale(1.02);filter:blur(0)}100%{opacity:0;transform:scale(1.04);filter:blur(4px)}}
 @keyframes cineBg{from{opacity:1;visibility:visible}to{opacity:0;visibility:hidden}}
 [data-cine="txt"]{opacity:0;}
-[data-s7="in"] [data-cine="txt"]{animation:cineText 3.4s ease-in-out .3s both;}
-[data-s7="in"] [data-cine="bg"]{animation:cineBg 1.4s ease 3.6s forwards;}
+[data-s8="in"] [data-cine="txt"]{animation:cineText 3.4s ease-in-out .3s both;}
+[data-s8="in"] [data-cine="bg"]{animation:cineBg 1.4s ease 3.6s forwards;}
 @media (prefers-reduced-motion: reduce){[data-cine="bg"]{display:none;}}
 @keyframes rvL{from{opacity:0;clip-path:inset(-60% 100% -60% -10%);filter:blur(3px)}to{opacity:1;clip-path:inset(-60% -10% -60% -10%);filter:blur(0)}}
 @keyframes rvR{from{opacity:0;clip-path:inset(-60% -10% -60% 100%);filter:blur(3px)}to{opacity:1;clip-path:inset(-60% -10% -60% -10%);filter:blur(0)}}
@@ -313,11 +313,11 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
 
   <section data-screen-label="07 Gift &amp; Ucapan" ref="{{ s7Ref }}" style="scroll-snap-align:start;position:relative;width:100%;min-height:100svh;overflow:clip;background:#fefaee;color:#3b2f18;container-type:inline-size;">
     <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(40px, 7cqw, 80px) clamp(16px, 4cqw, 48px) clamp(48px, 8cqw, 96px);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:clamp(24px, 3.4cqw, 40px);">
-      <h2 data-a="title" style="margin:0;font-family:'Pinyon Script', cursive;font-weight:400;font-size:clamp(34px, 5cqw, 72px);line-height:1.15;text-align:center;color:#a8803a;text-wrap:balance;padding:clamp(8px, 1.5cqw, 20px) 0;animation-delay:4.4s;">Sharing joy with you is our greatest gift</h2>
+      <h2 data-a="title" style="margin:0;font-family:'Pinyon Script', cursive;font-weight:400;font-size:clamp(34px, 5cqw, 72px);line-height:1.15;text-align:center;color:#a8803a;text-wrap:balance;padding:clamp(8px, 1.5cqw, 20px) 0;animation-delay:.2s;">Sharing joy with you is our greatest gift</h2>
 
       <div style="width:100%;display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 420px), 1fr));gap:clamp(18px, 2.6cqw, 32px);align-items:start;">
 
-        <div data-a="fromL" style="background:#fefaee;border:1px solid #eadfbf;border-radius:22px;padding:clamp(22px, 3cqw, 38px);box-shadow:0 22px 46px rgba(70,60,40,0.24), 0 4px 10px rgba(70,60,40,0.10);display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;animation-delay:4.7s;">
+        <div data-a="fromL" style="background:#fefaee;border:1px solid #eadfbf;border-radius:22px;padding:clamp(22px, 3cqw, 38px);box-shadow:0 22px 46px rgba(70,60,40,0.24), 0 4px 10px rgba(70,60,40,0.10);display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;animation-delay:.5s;">
           <span style="font-family:'Cinzel', serif;font-size:13px;letter-spacing:0.4em;text-indent:0.4em;color:#a8803a;">DOA UNTUK PENGANTIN</span>
           <p style="margin:0;max-width:440px;font-family:'Cormorant Garamond', serif;font-style:italic;font-size:clamp(16px, 1.5cqw, 19px);line-height:1.5;color:#5a4f36;text-wrap:pretty;">“Semoga Allah memberkahimu di waktu bahagia dan memberkahimu di waktu susah, serta semoga Allah menyatukan kalian berdua dalam kebaikan.”</p>
           <div style="width:60%;height:1px;background:#c9b98a;margin:4px 0;"></div>
@@ -350,7 +350,7 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
           </sc-if>
         </div>
 
-        <div data-a="fromR" style="background:#fefaee;border:1px solid #eadfbf;border-radius:22px;padding:clamp(22px, 3cqw, 38px);box-shadow:0 22px 46px rgba(70,60,40,0.24), 0 4px 10px rgba(70,60,40,0.10);display:flex;flex-direction:column;gap:16px;animation-delay:4.85s;">
+        <div data-a="fromR" style="background:#fefaee;border:1px solid #eadfbf;border-radius:22px;padding:clamp(22px, 3cqw, 38px);box-shadow:0 22px 46px rgba(70,60,40,0.24), 0 4px 10px rgba(70,60,40,0.10);display:flex;flex-direction:column;gap:16px;animation-delay:.65s;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;">
             <span style="font-family:'Cinzel', serif;font-size:13px;letter-spacing:0.4em;text-indent:0.4em;color:#a8803a;">RSVP</span>
             <h3 style="margin:0;font-family:'Pinyon Script', cursive;font-weight:400;font-size:clamp(34px, 3.4cqw, 46px);line-height:1;color:#a8803a;">Ucapan &amp; Doa</h3>
@@ -393,22 +393,20 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
         </div>
       </div>
     </div>
-    <div data-cine="bg" style="position:absolute;inset:0;z-index:5;background:#0b0b08;pointer-events:none;">
-      <div style="position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center;padding:0 8cqw;box-sizing:border-box;">
-        <p data-cine="txt" style="margin:0;font-family:'Pinyon Script', cursive;font-size:clamp(38px, 6cqw, 88px);line-height:1.2;text-align:center;color:#f3e7c4;text-wrap:balance;">Sharing joy with you is our greatest gift</p>
-      </div>
-    </div>
   </section>
 
   <section data-screen-label="08 Penutup" ref="{{ s8Ref }}" style="scroll-snap-align:start;scroll-snap-stop:always;position:relative;width:100%;height:100svh;min-height:560px;overflow:hidden;background:#fefaee;color:#333d23;container-type:size;">
-    <img data-a="tr" src="assets/bg-sudut-kanan-atas.webp" alt="" style="position:absolute;right:1.5cqw;top:0;width:min(22cqw, 40cqh);pointer-events:none;">
-    <img data-a="bl" src="assets/bg-sudut-kiri-bawah.webp" alt="" style="position:absolute;left:1.5cqw;bottom:0;width:min(22cqw, 40cqh);pointer-events:none;animation-delay:.1s;">
+    <img data-a="tr" src="assets/bg-sudut-kanan-atas.webp" alt="" style="position:absolute;right:1.5cqw;top:0;width:min(22cqw, 40cqh);pointer-events:none;animation-delay:4.2s;">
+    <img data-a="bl" src="assets/bg-sudut-kiri-bawah.webp" alt="" style="position:absolute;left:1.5cqw;bottom:0;width:min(22cqw, 40cqh);pointer-events:none;animation-delay:4.3s;">
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6cqh;padding:3cqh 5cqw;box-sizing:border-box;text-align:center;">
-      <span data-a="title" style="font-family:'Pinyon Script', cursive;font-size:clamp(32px, min(4.8cqw, 8cqh), 92px);line-height:1.2;text-transform:capitalize;color:#a8803a;margin-bottom:2cqh;max-width:92cqw;text-wrap:balance;animation-delay:.2s;">See you on our wedding day</span>
-      <div data-a="grow" style="width:min(40cqh, 76cqw);animation-delay:.45s;filter:drop-shadow(0 1.2cqh 2.4cqh rgba(60,45,15,0.22));">
+      <span data-a="title" style="font-family:'Pinyon Script', cursive;font-size:clamp(32px, min(4.8cqw, 8cqh), 92px);line-height:1.2;text-transform:capitalize;color:#a8803a;margin-bottom:2cqh;max-width:92cqw;text-wrap:balance;animation-delay:4.4s;">See you on our wedding day</span>
+      <div data-a="grow" style="width:min(40cqh, 76cqw);animation-delay:4.65s;filter:drop-shadow(0 1.2cqh 2.4cqh rgba(60,45,15,0.22));">
         <img src="assets/bg-couple-frame.webp" alt="Riza dan Amel" style="display:block;width:100%;aspect-ratio:859/1224;">
       </div>
-      <p data-a="title" style="margin:0;font-family:'Cinzel', serif;font-size:clamp(15px, min(2.4cqw, 3.4cqh), 30px);letter-spacing:0.3em;text-indent:0.3em;color:#a8803a;animation-delay:.9s;">08.11.26</p>
+      <p data-a="title" style="margin:0;font-family:'Cinzel', serif;font-size:clamp(15px, min(2.4cqw, 3.4cqh), 30px);letter-spacing:0.3em;text-indent:0.3em;color:#a8803a;animation-delay:5.1s;">08.11.26</p>
+    </div>
+    <div data-cine="bg" style="position:absolute;inset:0;z-index:5;background:#0b0b08;pointer-events:none;display:flex;align-items:center;justify-content:center;padding:0 8cqw;box-sizing:border-box;">
+      <p data-cine="txt" style="margin:0;font-family:'Pinyon Script', cursive;font-size:clamp(38px, 7cqw, 96px);line-height:1.2;text-align:center;color:#f3e7c4;text-wrap:balance;">See You On Our Wedding Day</p>
     </div>
   </section>
 </main>
