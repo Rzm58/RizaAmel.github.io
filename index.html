@@ -376,7 +376,7 @@ input::placeholder,textarea::placeholder{color:#9a8f72;}
               </select>
             </label>
           </sc-if>
-          <textarea value="{{ fMsg }}" onChange="{{ setMsg }}" placeholder="Tulis ucapan &amp; doa untuk Riza &amp; Amel" rows="4" style="padding:12px 16px;border:1px solid #d9cfae;border-radius:12px;background:#fffdf6;font-family:'Cormorant Garamond', serif;font-size:17px;line-height:1.45;color:#3b2f18;resize:vertical;outline:none;" style-focus="border-color:#c9a14a;"></textarea>
+          <textarea value="{{ fMsg }}" onChange="{{ setMsg }}" placeholder="Tulis ucapan &amp; doa untuk Riza &amp; Amel (opsional)" rows="4" style="padding:12px 16px;border:1px solid #d9cfae;border-radius:12px;background:#fffdf6;font-family:'Cormorant Garamond', serif;font-size:17px;line-height:1.45;color:#3b2f18;resize:vertical;outline:none;" style-focus="border-color:#c9a14a;"></textarea>
           <button onClick="{{ submit }}" disabled="{{ sending }}" style="display:inline-flex;padding:4px;border:1px solid #c9a14a;border-radius:999px;background:none;cursor:pointer;align-self:center;" style-hover="border-color:#8a6a2a;"><span style="position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:46px;padding:0 28px;border-radius:999px;background:linear-gradient(135deg, #a5813a 0%, #8a6a2a 45%, #6f5420 100%);box-shadow:inset 0 1px 0 rgba(255,240,200,0.35), 0 8px 20px rgba(111,84,32,0.35);color:#fefaee;font-family:'Cinzel', serif;font-size:13px;letter-spacing:0.18em;"><span style="width:24px;height:16px;flex-shrink:0;background:#fefaee;-webkit-mask:url('assets/ik-pesawat.webp') center/contain no-repeat;mask:url('assets/ik-pesawat.webp') center/contain no-repeat;"></span><span style="width:1px;height:18px;background:rgba(254,250,238,0.4);"></span>{{ submitLabel }}<span style="position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg, transparent, rgba(255,245,215,0.45), transparent);animation:btnShine 3.6s ease-in-out 2s infinite;pointer-events:none;"></span></span></button>
           <sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}">
             <p style="margin:0;text-align:center;font-family:'Cormorant Garamond', serif;font-style:italic;font-size:15px;color:#a4674a;">{{ note }}</p>
@@ -493,8 +493,8 @@ class Component extends DCLogic {
   };
   submit = async () => {
     const { fName, fAttend, fGuests, fMsg } = this.state;
-    if (!fName.trim() || !fMsg.trim()) { this.setState({ note: 'Mohon isi nama dan ucapan terlebih dahulu.' }); return; }
-    const entry = { name: fName.trim(), attend: fAttend, guests: fAttend === 'Hadir' ? fGuests : '0', msg: fMsg.trim(), time: new Date().toISOString() };
+    if (!fName.trim()) { this.setState({ note: 'Mohon isi nama Anda terlebih dahulu.' }); return; }
+    const entry = { name: fName.trim(), attend: fAttend, guests: fAttend === 'Hadir' ? fGuests : '0', msg: fMsg.trim() || '-', time: new Date().toISOString() };
     this.setState({ sending: true, note: '' });
     const url = this.sheetEndpoint();
     let saved = false;
@@ -510,7 +510,7 @@ class Component extends DCLogic {
     try { localStorage.setItem('ra-ucapan', JSON.stringify(wishes)); } catch (_) {}
     this.setState({
       wishes, sending: false, fName: '', fMsg: '', fGuests: '1',
-      note: saved ? 'Terima kasih atas ucapan & doanya!' : 'Ucapan tersimpan di perangkat ini, tetapi belum terkirim. Silakan coba lagi nanti.'
+      note: saved ? (entry.msg === '-' ? 'Terima kasih atas konfirmasi kehadirannya!' : 'Terima kasih atas ucapan & doanya!') : 'Ucapan tersimpan di perangkat ini, tetapi belum terkirim. Silakan coba lagi nanti.'
     });
   };
   sheetEndpoint = () => {
@@ -659,8 +659,8 @@ class Component extends DCLogic {
       sending: this.state.sending,
       submitLabel: this.state.sending ? 'MENGIRIM…' : 'KIRIM UCAPAN',
       hasNote: !!this.state.note, note: this.state.note,
-      hasWishes: this.state.wishes.length > 0,
-      wishes: this.state.wishes,
+      hasWishes: this.state.wishes.some(w => w.msg && w.msg !== '-'),
+      wishes: this.state.wishes.filter(w => w.msg && w.msg !== '-'),
       s6Ref: this.s6Ref,
       openMaps: (e) => {
         e.preventDefault();
